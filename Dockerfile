@@ -7,7 +7,8 @@ RUN addgroup -g 6006 -S gcs \
 	&& adduser -D -u 6006 -S -h /home/gcs -s /sbin/nologin -G gcs gcs \
 	&& apk add --no-cache --virtual .build-deps \
 		curl \
-	&& apk add --no-cache \
+	&& apk add --no-cache --virtual .cloudsdk-rundeps \
+		openssh-client \
 		python \
 	&& curl -fSL https://dl.google.com/dl/cloudsdk/channels/rapid/google-cloud-sdk.tar.gz -o google-cloud-sdk.tar.gz \
 	&& tar -xzf google-cloud-sdk.tar.gz \
