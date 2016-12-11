@@ -21,15 +21,15 @@ RUN addgroup -g 6006 -S gcs \
 	\
 	&& echo 'echo -e "\
 	\e[1mINSTRUCTIONS:\e[0m Run the gcloud tool as normal. Example:\n\
-	\n		\e[93mgcloud help\e[0m\n\
+	\n	\e[93mgcloud help\e[0m\n\
 	"' > /home/gcs/instructions.sh \
 	&& chmod +x /home/gcs/instructions.sh \
 	\
 	&& rm -f google-cloud-sdk.tar.gz \
 	&& apk del .build-deps \
 	\
-	# Unset SUID on all executables
-	&& for i in $(find / -perm +6000 -type f); do chmod a-s $i; done
+	# Unset SUID on all files
+	&& for i in $(find / -perm /6000 -type f); do chmod a-s $i; done
 
 ENV PATH /google-cloud-sdk/bin:$PATH
 WORKDIR /home/gcs
