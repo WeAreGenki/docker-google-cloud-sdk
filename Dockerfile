@@ -1,7 +1,7 @@
 # Google Cloud SDK image for general purpose use
 
-FROM alpine:3.4
-MAINTAINER Max Milton <max@wearegenki.com>
+FROM alpine:3.5
+LABEL MAINTAINER="Max Milton <max@wearegenki.com>"
 
 RUN addgroup -g 6006 -S gcs \
 	&& adduser -D -u 6006 -S -h /home/gcs -s /sbin/nologin -G gcs gcs \
