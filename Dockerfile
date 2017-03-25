@@ -2,8 +2,9 @@
 
 FROM alpine:3.5
 
-RUN addgroup -g 6006 -S gcs \
-	&& adduser -D -u 6006 -S -h /home/gcs -s /sbin/nologin -G gcs gcs \
+RUN set -xe \
+	# && addgroup -g 6006 -S gcs \
+	# && adduser -D -u 6006 -S -h /home/gcs -s /sbin/nologin -G gcs gcs \
 	&& apk add --no-cache --virtual .build-deps \
 		curl \
 	&& apk add --no-cache --virtual .cloudsdk-rundeps \
@@ -32,7 +33,7 @@ RUN addgroup -g 6006 -S gcs \
 	&& for i in $(find / -perm /6000 -type f); do chmod a-s $i; done
 
 ENV PATH /google-cloud-sdk/bin:$PATH
-WORKDIR /home/gcs
-USER gcs
+# WORKDIR /home/gcs
+# USER gcs
 
 CMD ["/bin/sh", "-sc", "~/instructions.sh"]
